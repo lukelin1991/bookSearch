@@ -1,23 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+import axios from 'axios'
+import { BookCon } from './bookCon'
+import { SearchBar } from './SearchBar'
+import "./App.css"
+import "./book.css"
 
-function App() {
+
+export const App = () => {
+  const [books, setBooks] = useState({ready: false, data: []})
+  const [searchInput, setInput] = useState('')
+
+  const handleResponse = (response) => [
+    setBooks({ready: true, data: response.data.list})
+  ]
+
+  const fetchBooks = () => {
+    const apiUrl = `https://goodreads-server-express--dotdash.repl.co/search/${searchInput}`
+    axios.get(apiUrl).then(handleResponse)
+  }
+
+  const updateInput = (newInput) => {
+    setInput(newInput)
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {console.log(searchInput)}
+      <h1 className="title">Welcome to the BookSearch!</h1>
+      <hr/>
+      <SearchBar searchInput={searchInput} updateInput={updateInput} fetchBooks={fetchBooks} />
+      <BookCon books={books}/>
     </div>
   );
 }

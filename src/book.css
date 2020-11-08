@@ -1,0 +1,34 @@
+
+.title{
+    text-align: center;
+}
+
+.book-con{
+    padding-top: 50px;
+}
+.book-map{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;    
+}
+
+.search{
+    display: grid;
+    place-items: center;
+    padding:25px;
+ 
+}
+
+.form-control.sb{
+    width: 200px;
+}
+
+.book-img{
+    width: 100px;
+}
+
+.book {
+    padding: 50px;
+    text-align: center;
+}
+
